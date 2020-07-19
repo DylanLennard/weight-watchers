@@ -2,11 +2,14 @@
 ZIP_FILE=build.zip
 CWD=$(shell pwd)
 
-install_env:
+create_env:
 	pyenv virtualenv 3.8.3 weight-watchers-env
 
-activate:
+activate_nev:
 	pyenv activate weight-watchers-env
+
+install_reqs:
+	pip install -r requirements.txts
 
 build:
 	cd ~/.pyenv/versions/3.8.3/envs/weight-watchers-env/lib/python3.8/site-packages && \
