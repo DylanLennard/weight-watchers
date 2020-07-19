@@ -1,4 +1,4 @@
-import weight_watchers
+from src import weight_watchers
 
 
 def lambda_handler(event, context):

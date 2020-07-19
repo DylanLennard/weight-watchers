@@ -1,6 +1,12 @@
-.PHONY: build clean run
+.PHONY: activate build clean run
 ZIP_FILE=build.zip
 CWD=$(shell pwd)
+
+install_env:
+	pyenv virtualenv 3.8.3 weight-watchers-env
+
+activate:
+	pyenv activate weight-watchers-env
 
 build:
 	cd ~/.pyenv/versions/3.8.3/envs/weight-watchers-env/lib/python3.8/site-packages && \
