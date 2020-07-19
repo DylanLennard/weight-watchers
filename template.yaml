@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+
+Resources:
+  WeightWatchers:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: python3.8
+      Handler: main.lambda_handler
+      CodeUri: ./build.zip
+      MemorySize: 1024
+      Timeout: 120
+      Environment:
+        Variables:
+          IN_STOCK_MSG: "Ship to Me"
+          FILE_PATH: "endpoints/endpoints.json"
+          # if you'd like to test this end to end, set QA to false and set your topic here
+          SNS_TOPIC: ""
+          QA: True
