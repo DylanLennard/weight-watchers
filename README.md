@@ -25,7 +25,7 @@ This program will take a json file of URLs for different size weight plates and
 ```BASH
 # setup the virtualenv
 make create_env
-make activate_nev
+make activate_env
 make install_reqs
 ```
 
