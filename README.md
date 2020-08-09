@@ -3,7 +3,7 @@
 ## Overview
 During covid, it's become increasingly difficult to find weight lifting bumper plates available for sale. In particular, I keep finding the Ethos bumper plates at Dick's sporting goods store are always unavailable. While they have the 'notify me when available' email available, I was more interested in receiving a text message with a link to buy the actual item online.
 
-Thus I made a fun little program to query for 25 and 35 pound plates (45's were removed as listing from the website at the time of creation) which will email me via text message when available (checking roughly every 20 minutes).
+Thus I made a fun little program to query for 25, 35, and 45 pound plates which will email me via text message when available (checking roughly every 20 minutes).
 
 The purpose of this was to be a fun little saturday night project which would result in the following
 * me playing around with SNS being subscribed to by a mobile number
