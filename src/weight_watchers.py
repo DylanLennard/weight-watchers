@@ -51,16 +51,15 @@ def is_available(response_text: str) -> bool:
     return False
 
 
-def publish(req_list: List[Dict[str, str]]):
+def publish(req_list: List[Dict[str, str]]) -> None:
     """Publish message to SNS to SMS delivery."""
-    client = boto3.client('sns')
     for req in req_list:
         if req["available"]:
             msg = f"Bruh, go buy {req['size']} lbs! {req['url']}"
             if bool(QA):
                 print(msg)
             else:
-                client.publish(
+                boto3.client('sns').publish(
                     TopicArn=SNS_TOPIC,
                     Message=msg,
                     MessageStructure='string'
