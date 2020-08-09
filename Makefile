@@ -15,7 +15,7 @@ build:
 	cd ~/.pyenv/versions/3.8.3/envs/weight-watchers-env/lib/python3.8/site-packages && \
 		zip -r9 ${CWD}/${ZIP_FILE} . && \
 		cd ${CWD} && \
-		zip -rg ${ZIP_FILE} main.py weight_watchers.py endpoints/
+		zip -rg ${ZIP_FILE} main.py src/ endpoints/
 
 clean:
 	rm -rf ./${ZIP_FILE}
