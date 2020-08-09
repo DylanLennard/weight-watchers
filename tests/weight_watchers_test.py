@@ -50,5 +50,6 @@ def test_is_available():
     assert not weight_watchers.is_available(failure_html)
 
 
+# TODO: get mocks setup for this joker
 def test_publish():
     pass

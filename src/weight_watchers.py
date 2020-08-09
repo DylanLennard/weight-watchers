@@ -40,6 +40,7 @@ def check_for_success(req_list: List[Dict[str, str]]) -> List[Dict[str, str]]:
         req["available"] = is_available(req["response"])
     return req_list
 
+
 def is_available(response_text: str) -> bool:
     """Return whether or not item is available."""
     soupish = BeautifulSoup(response_text, 'html.parser')\
@@ -48,6 +49,7 @@ def is_available(response_text: str) -> bool:
         if el.text.strip() == IN_STOCK_MSG:
             return True
     return False
+
 
 def publish(req_list: List[Dict[str, str]]):
     """Publish message to SNS to SMS delivery."""
