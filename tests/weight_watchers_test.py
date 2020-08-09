@@ -1,4 +1,5 @@
 from src import weight_watchers
+from unittest.mock import patch
 import vcr
 
 # some vars for use w/ unit tests below
@@ -50,6 +51,16 @@ def test_is_available():
     assert not weight_watchers.is_available(failure_html)
 
 
-# TODO: get mocks setup for this joker
-def test_publish():
-    pass
+@patch('src.weight_watchers.boto3.client')
+def test_publish(mock_client):
+    res_list = req_list
+
+    # one successful message, one failure message
+    res_list[0]['available'] = True
+    res_list[1]['available'] = False
+
+    weight_watchers.QA = False
+    weight_watchers.publish(res_list)
+
+    mock_client.assert_called_once_with('sns')
+    mock_client.return_value.publish.assert_called_once()
