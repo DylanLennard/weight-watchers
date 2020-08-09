@@ -37,9 +37,17 @@ def request_endpoints(req_list: List[Dict[str, str]]) -> List[Dict[str, str]]:
 def check_for_success(req_list: List[Dict[str, str]]) -> List[Dict[str, str]]:
     """Checks all requests for a success."""
     for req in req_list:
-        req["available"] = _is_available(req["response"])
+        req["available"] = is_available(req["response"])
     return req_list
 
+def is_available(response_text: str) -> bool:
+    """Return whether or not item is available."""
+    soupish = BeautifulSoup(response_text, 'html.parser')\
+        .find_all(attrs={'class': 'ship-mode-message'})
+    for el in soupish:
+        if el.text.strip() == IN_STOCK_MSG:
+            return True
+    return False
 
 def publish(req_list: List[Dict[str, str]]):
     """Publish message to SNS to SMS delivery."""
@@ -55,16 +63,6 @@ def publish(req_list: List[Dict[str, str]]):
                     Message=msg,
                     MessageStructure='string'
                 )
-
-
-def _is_available(response_text: str) -> bool:
-    """Return whether or not item is available."""
-    soupish = BeautifulSoup(response_text, 'html.parser')\
-        .find_all(attrs={'class': 'ship-mode-message'})
-    for el in soupish:
-        if el.text.strip() == IN_STOCK_MSG:
-            return True
-    return False
 
 
 def run():
